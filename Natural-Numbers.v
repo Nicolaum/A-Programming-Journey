@@ -186,10 +186,29 @@ Proof.
   intros [H_add_ZERO H_add_Succ] [H_add'_ZERO H_add'_Succ].
   intro n.
   induction n as [ | n' IHn ]; intro m.
-    assert (H_add_ZERO_m := H_add_ZERO m). (* We use 'assert' to make an assertion. This time we *)
+    apply (eq_Nat_is_transitive (add ZERO m) m (add' ZERO m)).
+      assert (H_add_ZERO_m := H_add_ZERO m). (* We use 'assert' to make an assertion. This time we *)
                                            (* instantiate H_add_ZERO with the variable m. *)
-    assert (H_add'_ZERO_m := H_add'_ZERO m).
-    apply (eq_Nat_
+      exact H_add_ZERO_m.
+
+      assert (H_add'_ZERO_m := H_add'_ZERO m).
+      apply eq_Nat_is_symmetric in H_add'_ZERO_m.
+      exact H_add'_ZERO_m.
+
+    assert (H_add_Succ_n'_m := H_add_Succ n' m).
+    assert (H_add'_Succ_n'_m := H_add'_Succ n' m).
+    apply (eq_Nat_is_transitive (add (Succ n') m) (Succ (add n' m)) (add' (Succ n') m)).    
+      exact H_add_Succ_n'_m.
+
+      apply eq_Nat_is_symmetric.
+      apply (eq_Nat_is_transitive (add' (Succ n') m) (Succ (add' n' m)) (Succ (add n' m))).
+        exact H_add'_Succ_n'_m.
+
+        apply -> eq_Nat_Succ_Succ.
+        apply eq_Nat_is_symmetric.
+        exact (IHn m).
+Qed.                            
+(* If you did not prove Booleans with eq_bool', try taking a look at it now. *)
 
 
 
