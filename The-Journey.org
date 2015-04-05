@@ -1,0 +1,124 @@
+* A Journey into Languages, Logic and Problems
+
+** The Worlds
+     There are many different worlds, properly the most obvious is the real world,
+which indeed is a bit peculiar and difficult to reason about! There is so many
+factors to take into account and that the mind of people is not always logical.
+And do not get me started on the exceptions
+ in the natural languages, communication and expressing thoughts exactly,
+ such that other people understand exactly what you feel,
+problem being different life experiences.
+
+The Mathematical and Logical worlds, very, very specific worlds which is exactly
+what they are. And the languages used to describe these worlds is well defined,
+artificially created to a specific problems and abstractions.
+
+** The World of Words
+   We have our dictionary, a number of valid words,
+   like valid is a valid world in the English language.
+
+   In programming languages, we keep expanding vocabulary.
+   Creating new nouns and verbs, by defining exactly what
+   they are.
+
+   There is however a huge difference between what
+   is meant by a noun and it structure and how
+   verbs is used in the different programming paradigms.
+
+   In imperative languages we have structures and instructions,
+   where we work very close to how a computer works, one
+   instruction after another, moving around bits and bytes.
+   This is beneficial if we are very concerned with memory
+   usage and to reason about performance, and since the
+   compiled code (x86, arm, ...), is close to the source file
+   only it have a 'nicer' syntax than the compiled code.
+
+   In object oriented programming, the object is the noun,
+   and it is the object that do something, through a method
+   typically defined in an imperative manner. The idea is
+   like a chain of command, one telling another person/object
+   to do something and each having some state. So a huge focus
+   on the noun.
+
+   In Functional programming languages it is the function,
+   the verb, which is the center of the paradigms.
+   These functions is typically defined recursively
+   and with currying, meaning that we can partially
+   apply function, returning a new anonymous
+   function with the calculation until now, waiting
+   to be applied to something later.
+
+   A huge difference between how functional and imperative
+   languages works with side effects, like writing/reading a
+   file or database, do something on the screen, the works.
+   The imperative programming languages typically use a
+   lot of side effects, because of state based structure.
+   A lot of functions might update something in one or
+   more objects, meaning that the order of execution have
+   huge influence on the result. Whereas functional programming
+   languages strives for as little side effects as possible,
+   so called 'pure code', where the order of execution
+   have no influence on the final result. This gives the
+   benefit of easily distributing the workload on different
+   processors and even among many different machines.
+
+   Words are found by lexing the source files, using regular
+   expressions.
+
+** The World of Grammar
+   Grammar is used to find out what happens in the program,
+   from the abstract view of the source language.
+
+   Like what does "1 + 2 + 3" mean, this is done by using
+   a context free grammar, for example for matching the
+   previous expression would be to define a grammar like:
+
+   arith := var
+          | plus
+
+   These grammars is converted into a abstract syntax three.
+   In Lisp like languages like 'scheme', programming is done
+   directly in these abstract syntax trees, so it is easier
+   to make a compiler with Lisp like languages as the target
+   language, than making a compiler to x86, because you can
+   skip the whole conversion to x86, where you have to take
+   the CPU registers, memory allocation and ...,  into
+   consideration. What happened to the Lisp machines?
+
+** The World of Types and Semantics
+   The grammar is used to say what the things means, but not
+   if the thing makes any sense. Like what is the meaning of
+   "cow + 42 - bananas / Sun", where cow is a thing with
+   a udder that gives milk, 42 is a number, bananas is a fruit and
+   Sun is something which is really hot.
+
+   This is where Types and Semantics comes into place,
+   for instance we might want the '+' only works on numbers and
+   if it get something else, like a goat, it will give a
+   type error.
+
+   Dynamic types can be really useful, but they cannot
+   be reasoned about, so cannot ensure that the program
+   always will do exactly what it is supposed to.
+
+   Many functional programming languages have a strong type
+   system, that ensures the validity of the program.
+   It is also quite a lot of computations that can be
+   done in the type system, like defining a function
+   that matches the type it gets as input and do something
+   dependent on the matched type. Types can also hold data,
+   for example, we can define the type of binary trees
+   which holds a tuple consisting of a natural number and
+   a list of strings and the nodes of the tree holds
+   a natural number. We now have a structure which
+   could hold Movie titles and number of copies sold, and the
+   nodes have a number which sorts the tree in a way,
+   such that all movies with a number lower than the number in
+   the node is to the left and all higher to the right.
+   So it would be easy to create a function that for
+   instance returns the sub tree, with more than some
+   number copies sold.
+
+
+** The World of
+**
