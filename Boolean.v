@@ -1,4 +1,4 @@
-Require Import Equal Algebra Tactics.
+Require Import Equal Algebra OwnTacts.
 
 (* One of the simplest types is the type of booleans *)
 
@@ -10,7 +10,7 @@ Inductive bool' : Type :=
 
 (* First of we need a way of telling if the two types is equal. *)
 
-Function eq_bool' (a b : bool') : Prop :=
+Fixpoint eq_bool' (a b : bool') : Prop :=
   match a, b with
     | T, T => True
     | F, F => True
@@ -18,7 +18,7 @@ Function eq_bool' (a b : bool') : Prop :=
   end.
 
 (* We introduce infix notation for eq_bool' *)
-Notation "A =B= B" := (eq_bool' A B) (at level 70, right associativity).
+Notation "A =B= B" := (eq_bool' A B) (at level 70, no associativity).
 
 Lemma eq_bool'_T_T :
   T =B= T.
@@ -197,6 +197,10 @@ Function conj_b (a b : bool') : bool' :=
     | _, _ => F
   end.
 
+(* Introducing infix notation for conj_b *)
+
+Notation "A &&' B" := (conj_b A B) (at level 40, left associativity).
+
 (* Sanity Check *)
 Compute (unit_test_conj_b conj_b).
 
@@ -205,25 +209,25 @@ Compute (unit_test_conj_b conj_b).
 (* unfold_tactic 'name' to do this. *)
 
 Lemma conj_b_T_T :
-conj_b T T = T.
+  T &&' T = T.
 Proof.
   unfold_tactic conj_b.         
 Qed.
 
 Lemma conj_b_T_F :
-  conj_b T F = F.
+  T &&' F = F.
 Proof.
   unfold_tactic conj_b.
 Qed.
 
 Lemma conj_b_F_T :
-  conj_b F T = F.
+  F &&' T = F.
 Proof.
   unfold_tactic conj_b.
 Qed.
 
 Lemma conj_b_F_F :
-  conj_b F F = F.
+  F &&' F = F.
 Proof.
   unfold_tactic conj_b.
 Qed.
@@ -299,7 +303,7 @@ Abort.
 (* First that true is neutal on the left. *)
 Lemma conj_b_T_l :
   forall a : bool',
-    conj_b T a = a.
+    T &&' a = a.
 Proof.
   intros [ | ].
     exact conj_b_T_T.
@@ -309,7 +313,7 @@ Qed.
 (* And on the right *)
 Lemma conj_b_T_r :
   forall a : bool',
-    conj_b a T = a.
+    a &&' T = a.
 Proof.
   intros [ | ].
     exact conj_b_T_T.
